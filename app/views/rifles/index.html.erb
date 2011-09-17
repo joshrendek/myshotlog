@@ -1,0 +1,48 @@
+<div class="block">
+  <div class="secondary-navigation">
+    <ul class="wat-cf">
+      <li class="first active"><%= link_to "#{t("web-app-theme.list", :default => "List")}", rifles_path  %></li>
+      <li><%= link_to "#{t("web-app-theme.new", :default => "New")}", new_rifle_path %></li>
+    </ul>
+  </div>          
+  <div class="content">          
+    <h2 class="title"><%= t("web-app-theme.all", :default => "All")  %> Rifles</h2>
+    <div class="inner">
+      <table class="table">
+        <tr>             
+          <th class="first">ID</th>
+                    <th>
+            <%= t("activerecord.attributes.rifle.name", :default => t("activerecord.labels.name", :default => "Name")) %>
+          </th>
+          <th>Range Log</th>
+          <th>Average Accuracy</th>
+          <th>Total Shots</th>
+          <th class="last">&nbsp;</th>
+        </tr>
+        <% @rifles.each do |rifle| -%>
+        <tr class="<%= cycle("odd", "even") %>">
+          <td><%= rifle.id %></td>
+          <td><%= link_to rifle.name, rifle_path(rifle) %></td>
+          <td>
+            <%= link_to 'Range Log', rifle_range_days_url(rifle) %>
+          </td>
+          <td><%= rifle.average_accuracy.round(2) %>%</td>
+          <td><%= rifle.total_shots %></td>
+          <td class="last">
+            <%= link_to "#{t("web-app-theme.show", :default => "Show")}", rifle_path(rifle) %> |
+            <%= link_to "#{t("web-app-theme.edit", :default => "Edit")}", edit_rifle_path(rifle) %> |
+            <%= link_to "#{t("web-app-theme.delete", :default => "Delete")}", rifle_path(rifle), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
+          </td>
+        </tr>          
+        <% end -%>
+      </table>
+      <div class="actions-bar wat-cf">
+        <div class="actions">
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<% content_for :sidebar, render(:partial => 'sidebar') -%>

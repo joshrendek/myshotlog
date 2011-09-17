@@ -1,0 +1,75 @@
+<div class="block">
+  <div class="secondary-navigation">
+    <ul class="wat-cf">
+      <li class="first"><%= link_to "#{t("web-app-theme.list", :default => "List")}", rifles_path  %></li>
+      <li><%= link_to "#{t("web-app-theme.new", :default => "New")}", new_rifle_path %></li>
+      <li class="active"><%= link_to "#{t("web-app-theme.show", :default => "Show")}", rifle_path %></li>
+      <li><%= link_to "Range Log", rifle_range_days_path(params[:id]) %></li>
+    </ul>
+  </div>          
+  <div class="content">
+    <div class="inner">
+      
+        <p>
+          <b><%= t("activerecord.attributes.rifle.name", :default => t("activerecord.labels.name", :default => "Name")) %>:</b>
+          <%= @rifle.name %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.rifle.caliber", :default => t("activerecord.labels.caliber", :default => "Caliber")) %>:</b>
+          <%= @rifle.caliber %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.rifle.barrel_length", :default => t("activerecord.labels.barrel_length", :default => "Barrel length")) %>:</b>
+          <%= @rifle.barrel_length %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.rifle.model", :default => t("activerecord.labels.model", :default => "Model")) %>:</b>
+          <%= @rifle.model %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.rifle.action_type", :default => t("activerecord.labels.action_type", :default => "Action type")) %>:</b>
+          <%= @rifle.action_type %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.rifle.twist", :default => t("activerecord.labels.twist", :default => "Twist")) %>:</b>
+          <%= @rifle.twist %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.rifle.scope_name", :default => t("activerecord.labels.scope_name", :default => "Scope name")) %>:</b>
+          <%= @rifle.scope_name %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.rifle.scope_model", :default => t("activerecord.labels.scope_model", :default => "Scope model")) %>:</b>
+          <%= @rifle.scope_model %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.rifle.scope_zoom", :default => t("activerecord.labels.scope_zoom", :default => "Scope zoom")) %>:</b>
+          <%= @rifle.scope_zoom %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.rifle.scope_aperture", :default => t("activerecord.labels.scope_aperture", :default => "Scope aperture")) %>:</b>
+          <%= @rifle.scope_aperture %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.rifle.reticle_type", :default => t("activerecord.labels.reticle_type", :default => "Reticle type")) %>:</b>
+          <%= @rifle.reticle_type %>
+        </p>
+      <div class="wat-cf">
+        <%= link_to image_tag("web-app-theme/icons/application_edit.png", :alt => "#{t("web-app-theme.edit", :default=> "Edit")}") + " " + t("web-app-theme.edit", :default=> "Edit"), edit_rifle_path(@rifle), :class => "button" %> 
+        <%= link_to image_tag("web-app-theme/icons/cross.png", :alt => "#{t("web-app-theme.delete", :default=> "Delete")}") + " " + t("web-app-theme.delete", :default => "Delete"), rifle_path(@rifle), :method => "delete", :class => "button", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
+      </div>      
+    </div>
+  </div>
+</div>
+
+<% content_for :sidebar, render(:partial => 'sidebar') -%>

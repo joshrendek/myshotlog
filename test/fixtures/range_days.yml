@@ -1,0 +1,31 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  rifle_id: 1
+  user_id: 1
+  shots_fired: 1
+  shots_on_paper: 1
+  temperature: 1
+  humidity: 1
+  wind_speed: 1
+  wind_direction: MyString
+  shots_taken_at: 2011-01-15 17:19:48
+  range: 1
+  ammo_name: MyString
+  ammo_weight: 1
+  ammo_type: MyString
+
+two:
+  rifle_id: 1
+  user_id: 1
+  shots_fired: 1
+  shots_on_paper: 1
+  temperature: 1
+  humidity: 1
+  wind_speed: 1
+  wind_direction: MyString
+  shots_taken_at: 2011-01-15 17:19:48
+  range: 1
+  ammo_name: MyString
+  ammo_weight: 1
+  ammo_type: MyString

@@ -1,0 +1,29 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  caliber: 1.5
+  barrel_length: 1
+  model: MyString
+  action_type: MyString
+  twist: 1
+  user_id: 1
+  scope_name: MyString
+  scope_model: 1
+  scope_zoom: MyString
+  scope_aperture: 1
+  reticle_type: MyString
+
+two:
+  name: MyString
+  caliber: 1.5
+  barrel_length: 1
+  model: MyString
+  action_type: MyString
+  twist: 1
+  user_id: 1
+  scope_name: MyString
+  scope_model: 1
+  scope_zoom: MyString
+  scope_aperture: 1
+  reticle_type: MyString

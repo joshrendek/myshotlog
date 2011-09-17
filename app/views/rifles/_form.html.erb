@@ -1,0 +1,74 @@
+
+  <div class="group">
+    <%= f.label :name, t("activerecord.attributes.rifle.name", :default => "Name"), :class => :label %>
+    <%= f.text_field :name, :class => 'text_field' %>
+    <span class="description">Ex: Remgington 700 SPS Tactical</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :caliber, t("activerecord.attributes.rifle.caliber", :default => "Caliber"), :class => :label %>
+    <%= f.text_field :caliber, :class => 'text_field' %>
+    <span class="description">Ex: .308, .223, .22, .50BMG</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :barrel_length, t("activerecord.attributes.rifle.barrel_length", :default => "Barrel length"), :class => :label %>
+    <%= select('rifle', 'barrel_length', (3..40).to_a, {:selected => 20})%> 
+    <span class="description">Ex: 20, 24, 30 (only numbers, in inches)</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :model, t("activerecord.attributes.rifle.model", :default => "Model"), :class => :label %>
+    <%= f.text_field :model, :class => 'text_field' %>
+    <span class="description">Ex: Remington </span>
+  </div>
+
+  <div class="group">
+    <%= f.label :action_type, t("activerecord.attributes.rifle.action_type", :default => "Action type"), :class => :label %>
+    <%= select('rifle', 'action_type', ["Bolt", "Semi-Auto", "Muzzle Load"]) %>
+    <span class="description">Ex: bolt, semi-auto</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :twist, t("activerecord.attributes.rifle.twist", :default => "Twist"), :class => :label %>
+    1 in <%= select('rifle', 'twist', (1..20).to_a, {:selected => 10})%> "
+  </div>
+
+
+  <div class="group">
+    <%= f.label :scope_name, t("activerecord.attributes.rifle.scope_name", :default => "Scope name"), :class => :label %>
+    <%= f.text_field :scope_name, :class => 'text_field' %>
+    <span class="description">Ex: Burris, Leupold, NC-Star</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :scope_model, t("activerecord.attributes.rifle.scope_model", :default => "Scope model"), :class => :label %>
+    <%= f.text_field :scope_model, :class => 'text_field' %>
+    <span class="description">Ex: VX-7</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :scope_zoom, t("activerecord.attributes.rifle.scope_zoom", :default => "Scope zoom"), :class => :label %>
+    <%= select('rifle', 'scope_zoom', (1..32).to_a, {:selected => 4})%>-<%= select('rifle', 'scope_zoom2', (1..32).to_a, {:selected => 10})%>
+    <span class="description">Ex: 10, 4-12 [if fixed focus, enter 10-10, or 12-12]</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :scope_aperture, t("activerecord.attributes.rifle.scope_aperture", :default => "Scope aperture"), :class => :label %>
+    <%= select('rifle', 'scope_aperture', (10..60).to_a, {:selected => 30})%>  mm
+    <span class="description">Ex: 42, 30, 40</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :reticle_type, t("activerecord.attributes.rifle.reticle_type", :default => "Reticle type"), :class => :label %>
+    <%= f.text_field :reticle_type, :class => 'text_field' %>
+    <span class="description">Ex: Mil-dot</span>
+  </div>
+        
+<div class="group navform wat-cf">
+  <button class="button" type="submit">
+    <%= image_tag("web-app-theme/icons/tick.png", :alt => "#{t("web-app-theme.save", :default => "Save")}") %> <%= t("web-app-theme.save", :default => "Save") %>
+  </button>
+  <span class="text_button_padding"><%= t("web-app-theme.or", :default => "or") %></span>
+	<%= link_to t("web-app-theme.cancel", :default => "Cancel"), rifles_path, :class => "text_button_padding link_button" %>
+</div>

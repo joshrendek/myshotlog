@@ -1,0 +1,82 @@
+<div class="block">
+  <div class="secondary-navigation">
+    <ul class="wat-cf">
+      <li class="first"><%= link_to "#{t("web-app-theme.list", :default => "List")}", rifle_range_days_path(params[:rifle_id])  %></li>
+      <li><%= link_to "#{t("web-app-theme.new", :default => "New")}", new_rifle_range_day_path(params[:rifle_id]) %></li>
+      <li class="active"><%= link_to "#{t("web-app-theme.show", :default => "Show")}", rifle_range_day_path(params[:rifle_id]) %></li>
+    </ul>
+  </div>          
+  <div class="content">
+    <div class="inner">
+        <div id="image-target" style="background-image: url(<%=@range_day.target_image%>); ">
+          <div id="target" style="width: 400px; height: 400px;">
+            <% if @range_day.target_groups && @range_day.target_groups.size > 0  
+              JSON.parse(@range_day.target_groups).each do |t| %>
+            <span style='position: absolute; font-weight: bold; margin-top: <%=t[2]%>px; margin-left: <%=t[1]%>px; '><%=t[0]%></span>
+          <% end
+            end %>
+        </div>
+        </div>
+
+        <p>
+          <b><%= t("activerecord.attributes.range_day.rifle_id", :default => t("activerecord.labels.rifle_id", :default => "Rifle")) %>:</b>
+          <%= @range_day.rifle_id %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.range_day.user_id", :default => t("activerecord.labels.user_id", :default => "User")) %>:</b>
+          <%= @range_day.user_id %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.range_day.shots_fired", :default => t("activerecord.labels.shots_fired", :default => "Shots fired")) %>:</b>
+          <%= @range_day.shots_fired %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.range_day.shots_on_paper", :default => t("activerecord.labels.shots_on_paper", :default => "Shots on paper")) %>:</b>
+          <%= @range_day.shots_on_paper %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.range_day.temperature", :default => t("activerecord.labels.temperature", :default => "Temperature")) %>:</b>
+          <%= @range_day.temperature %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.range_day.humidity", :default => t("activerecord.labels.humidity", :default => "Humidity")) %>:</b>
+          <%= @range_day.humidity %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.range_day.wind_speed", :default => t("activerecord.labels.wind_speed", :default => "Wind speed")) %>:</b>
+          <%= @range_day.wind_speed %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.range_day.wind_direction", :default => t("activerecord.labels.wind_direction", :default => "Wind direction")) %>:</b>
+          <%= @range_day.wind_direction %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.range_day.shots_taken_at", :default => t("activerecord.labels.shots_taken_at", :default => "Shots taken at")) %>:</b>
+          <%= @range_day.shots_taken_at %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.range_day.range", :default => t("activerecord.labels.range", :default => "Range")) %>:</b>
+          <%= @range_day.range %>
+        </p>
+
+        <p>
+          <b>Notes:</b> <%= @range_day.notes %>
+        </p>
+      <div class="wat-cf">
+        <%= link_to image_tag("web-app-theme/icons/application_edit.png", :alt => "#{t("web-app-theme.edit", :default=> "Edit")}") + " " + t("web-app-theme.edit", :default=> "Edit"), edit_rifle_range_day_path(params[:rifle_id], @range_day), :class => "button" %> 
+        <%= link_to image_tag("web-app-theme/icons/cross.png", :alt => "#{t("web-app-theme.delete", :default=> "Delete")}") + " " + t("web-app-theme.delete", :default => "Delete"), rifle_range_day_path(params[:rifle_id], @range_day), :method => "delete", :class => "button", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
+      </div>      
+    </div>
+  </div>
+</div>
+
+<% content_for :sidebar, render(:partial => 'sidebar') -%>

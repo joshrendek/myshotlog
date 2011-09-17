@@ -1,0 +1,2 @@
+module RangeDaysHelper
+end

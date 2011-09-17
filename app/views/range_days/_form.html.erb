@@ -1,0 +1,87 @@
+  <div class="group">
+    <%= f.label :name, :class => :label %>
+    <%= f.text_field :name, :class => :text_field, :value => @range_day.name || "Log for " + Date.today.to_s %>
+  </div>
+  
+  <div class="group">
+    <%= f.label :rifle_id, t("activerecord.attributes.range_day.rifle_id", :default => "Rifle"), :class => :label %>
+    <%= select('range_day', 'rifle_id', current_user.rifles.collect{|r| [r.name, r.id]}) %>
+  </div>
+
+  <div class="group">
+    <%= f.label :shots_fired, t("activerecord.attributes.range_day.shots_fired", :default => "Shots fired"), :class => :label %>
+    <%= select('range_day', 'shots_fired', (1..1000).to_a, {:selected => @range_day.shots_fired || 30})%> 
+  </div>
+
+  <div class="group">
+    <%= f.label :shots_on_paper, t("activerecord.attributes.range_day.shots_on_paper", :default => "Shots on paper"), :class => :label %>
+     <%= select('range_day', 'shots_on_paper', (1..1000).to_a, {:selected => @range_day.shots_on_paper || 30})%> 
+  </div>
+
+  <div class="group">
+    <%= f.label :temperature, t("activerecord.attributes.range_day.temperature", :default => "Temperature"), :class => :label %>
+    <%= select('range_day', 'temperature', (-50..115).to_a, {:selected => @range_day.temperature || 60})%> &deg; F
+  </div>
+
+  <div class="group">
+    <%= f.label :humidity, t("activerecord.attributes.range_day.humidity", :default => "Humidity"), :class => :label %>
+    <%= select('range_day', 'humidity', (0..100).to_a, {:selected => @range_day.humidity || 60})%> %
+  </div>
+
+  <div class="group">
+    <%= f.label :wind_speed, t("activerecord.attributes.range_day.wind_speed", :default => "Wind speed"), :class => :label %>
+    <%= select('range_day', 'wind_speed', (0..50).to_a, {:selected => @range_day.wind_speed || 0})%> 
+  </div>
+
+  <div class="group">
+    <%= f.label :wind_direction, t("activerecord.attributes.range_day.wind_direction", :default => "Wind direction"), :class => :label %>
+    <%= f.text_field :wind_direction, :class => 'text_field' %>
+    <span class="description">Ex: N, NE, NNE, S, SSE, etc</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :shots_taken_at, t("activerecord.attributes.range_day.shots_taken_at", :default => "Shots taken at"), :class => :label %>
+    <%= f.datetime_select :shots_taken_at, :class => 'datetime_select' %>
+  </div>
+
+  <div class="group">
+    <%= f.label :range, t("activerecord.attributes.range_day.range", :default => "Range"), :class => :label %>
+    <%= select('range_day', 'range', (25..1500).to_a, {:selected => @range_day.range || 100})%> yards
+  </div>
+
+  <div class="group">
+    <%= f.label :notes, :class => :label %>
+    <%= f.text_area :notes, :class => 'text_area' %>
+  </div>
+
+  <div class="group">
+    <%= f.label :target_image, :class => :label %>
+    <%= f.text_field :target_image, :class => :text_field %>
+  </div>
+  <% if @range_day.target_image %>
+  <div class="group">
+    <div id="clickable-target" style="background-image: url(<%=@range_day.target_image%>); ">
+      <div id="target" style="width: 400px; height: 400px;">
+      <% if @range_day.target_groups && @range_day.target_groups.size > 0 
+      JSON.parse(@range_day.target_groups).each do |t| %>
+            <span style='position: absolute; font-weight: bold; margin-top: <%=t[2]%>px; margin-left: <%=t[1]%>px; '><%=t[0]%></span>
+            <script>
+              var i = <%=t[0]%>;
+              shotGroups[i-1] = new Array(<%=t[0]%>, <%=t[1]%>, <%=t[2]%>);
+            </script>
+          <% end %>
+        <% end  %>
+
+      </div>
+    </div>
+  </div>
+  <% end %>
+  <%= f.hidden_field :target_groups, :id => :target_groups %>
+
+<div class="group navform wat-cf">
+  <button class="button" type="submit">
+    <%= image_tag("web-app-theme/icons/tick.png", :alt => "#{t("web-app-theme.save", :default => "Save")}") %> <%= t("web-app-theme.save", :default => "Save") %>
+  </button>
+  <span class="text_button_padding"><%= t("web-app-theme.or", :default => "or") %></span>
+	<%= link_to t("web-app-theme.cancel", :default => "Cancel"), rifle_range_days_path(params[:rifle_id]), :class => "text_button_padding link_button" %>
+</div>

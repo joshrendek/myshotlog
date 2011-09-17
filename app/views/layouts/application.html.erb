@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Shot Log</title>
+  <%= stylesheet_link_tag "web-app-theme/base", "web-app-theme/themes/warehouse/style", "web-app-theme/override" %>
+  <%= stylesheet_link_tag "site" %>
+  <%= csrf_meta_tag %>
+
+ <script type="text/javascript"
+          src="http://www.google.com/jsapi"></script> 
+  <script type="text/javascript"> 
+      // You may specify partial version numbers, such as "1" or "1.3",
+      //  with the same result. Doing so will automatically load the
+      //  latest version matching that partial revision pattern
+      //  (e.g. 1.3 would load 1.3.2 today and 1 would load 1.4.4).
+      google.load("jquery", "1.4.4");
+ 
+      google.setOnLoadCallback(function() {
+          // Place init code here instead of $(document).ready()
+      });
+    </script> 
+
+
+  <%= javascript_include_tag :all%>
+  
+</head>
+<body>
+  <div id="container">
+    <div id="header">
+      <h1><a href="/">My Shot Log</a></h1>
+      <div id="user-navigation">
+        <ul class="wat-cf">
+          <% if user_signed_in? %>
+            <li><a href="/users/sign_out" class="logout"><%= t("web-app-theme.logout", :default => "Logout") %></a></li>
+          <% else %>
+            <li><a href="/users/sign_in">Sign In</a></li>
+            <li><a href="/users/sign_up">Sign Up</a></li>
+          <% end %>
+        </ul>
+      </div>
+      <div id="main-navigation">
+        <ul class="wat-cf"> 
+          <li class="<%= controller.controller_path == 'rifles' ? 'active' : '' %>"><a href="<%= rifles_path %>">Rifles</a></li> 
+        </ul>
+      </div>
+    </div>    
+    <div id="wrapper" class="wat-cf">
+      <div class="flash">
+        <% flash.each do |type, message| -%>
+          <div class="message <%= type %>">
+            <p><%= message %></p>
+          </div>
+        <% end -%>
+      </div>
+      <div id="main">
+        <%= yield %>
+        <div id="footer">
+          <div class="block">
+            <p>Copyright &copy; <%= Time.now.year %> My Shot Log.</p>
+          </div>      
+        </div>
+      </div>
+      <div id="sidebar">
+        <%= yield :sidebar %>
+      </div>
+    </div>    
+  </div>
+</body>
+</html>

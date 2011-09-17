@@ -1,0 +1,2 @@
+#clickable-target, #image-target { cursor: crosshair; height: auto; width: auto; margin: 20px; background-repeat: no-repeat; }
+#target span { color: lime; }

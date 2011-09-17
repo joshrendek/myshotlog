@@ -1,0 +1,58 @@
+<h2 class="title">
+    Range Logs for <%=link_to @rifle.name, @rifle %>
+</h2>
+<div class="block">
+  <div class="secondary-navigation">
+    <ul class="wat-cf">
+      <li class="first active"><%= link_to "#{t("web-app-theme.list", :default => "List")}", rifle_range_days_url(params[:rifle_id]) %></li>
+      <li><%= link_to "#{t("web-app-theme.new", :default => "New")}", new_rifle_range_day_path(params[:rifle_id]) %></li>
+    </ul>
+  </div>          
+  <div class="content">          
+    <h2 class="title"><%= t("web-app-theme.all", :default => "All")  %> RangeDays</h2>
+    <div class="inner">
+      <table class="table">
+        <tr>             
+          <th class="first">ID</th>
+                    <th>Name</th>
+                    <th>Shots Taken At</th>
+                    <th>Accuracy</th>
+                    <th>Temp</th>
+                    <th>Humidity</th>
+                    <th>Wind</th>
+                    <th>Range</th>
+          <th class="last">&nbsp;</th>
+        </tr>
+        <% @range_days.each do |range_day| -%>
+        <tr class="<%= cycle("odd", "even") %>">
+          <td>
+            <%= range_day.id %>
+          </td>
+          <td>
+            <%= link_to range_day.name, rifle_range_day_path(params[:rifle_id], range_day) %>
+          </td>
+          
+          <td><%= range_day.shots_taken_at%></td>
+          <td><%= ((range_day.shots_on_paper.to_f/range_day.shots_fired)*100).round(2) %>% [<%= range_day.shots_on_paper %>/<%= range_day.shots_fired %>]</td>
+          <td><%= range_day.temperature %> &deg; F</td>
+          <td><%= range_day.humidity %> %</td>
+          <td><%= range_day.wind_speed%> <%= range_day.wind_direction%> </td>
+          <td><%= range_day.range %> yards</td>
+          <td class="last">
+            <%= link_to "#{t("web-app-theme.show", :default => "Show")}", rifle_range_day_path(params[:rifle_id], range_day) %> |
+            <%= link_to "#{t("web-app-theme.edit", :default => "Edit")}", edit_rifle_range_day_path(params[:rifle_id], range_day) %> |
+            <%= link_to "#{t("web-app-theme.delete", :default => "Delete")}", rifle_range_day_path(params[:rifle_id], range_day), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
+          </td>
+        </tr>          
+        <% end -%>
+      </table>
+      <div class="actions-bar wat-cf">
+        <div class="actions">
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<% content_for :sidebar, render(:partial => 'sidebar') -%>
